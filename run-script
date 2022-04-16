@@ -1,0 +1,34 @@
+#!/bin/bash
+
+# iwad to be used, doom.wad, doom2.wad, plutonia.wad, or tnt.wad usually
+iwad='tnt.wad'
+
+#Skill level, 4 is Ultra-Violence, 5 is Nightmare.
+skill='4'
+
+#Level to warp to, '##', leave blank if not needed
+#Examples
+#set warp=
+#set warp=32
+warp='24'
+
+#pwad(s) to be loaded, '-file <1>.wad <2>.wad', leave blank if not needed
+#Examples
+#set pwad=
+#set pwad=-file sunlust.wad
+#set pwad=-file btsx_e1a.wad btsx_e1b.wad
+pwad='TNTR.wad'
+
+#complevel, this'll depend on the pwad used, when in doubt look at https://dsdarchive.com/ and find the wad there to see what other people use
+#common complevels are; 2 for doom 2, 3 for doom 1, 4 for plutonia and tnt, 9 for boom, and 11 for mbf
+complevel='4'
+
+#Name of the demo, this'll also be used for the path
+name='tnt24.lmp'
+
+#additional parameters, seperate with spaces. -nomusic is recommended as music can rarely crash the game, -nomonsters is also commonly used.
+#additional=-nomusic
+
+#the entire line that'll start the game and pass it the parameters
+# DSDA-Doom handles Wayland terribly (because of SDL)
+SDL_VIDEODRIVER=x11 dsda-doom -iwad $iwad -skill $skill -warp $warp -file $pwad -complevel $complevel -record demos/$name
